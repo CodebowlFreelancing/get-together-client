@@ -1,0 +1,47 @@
+{
+  "parser": "babel-eslint",
+  "env": {
+    "browser": true,
+    "es6": true,
+    "jest": true
+  },
+  "extends": ["eslint:recommended", "plugin:react/recommended"],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
+  "settings": {
+    "react": {
+      "version": "16.7.0-alpha.2"
+    }
+  },
+  "plugins": ["babel", "react"],
+  "rules": {
+    "comma-dangle": ["error", "always-multiline"],
+    "indent": ["error", 2],
+    "jsx-quotes": ["error", "prefer-double"],
+    "linebreak-style": ["error", "unix"],
+    "no-console": 0,
+    "no-constant-condition": 2,
+    "no-unused-vars": 2,
+    "semi": ["error", "never"],
+    "babel/camelcase": 2,
+    "babel/no-invalid-this": 2,
+    "babel/object-curly-spacing": 2,
+    "babel/quotes": ["error", "single"],
+    "react/no-deprecated": 2,
+    "react/no-direct-mutation-state": 2,
+    "react/no-unused-prop-types": 2,
+    "react/prefer-es6-class": 2,
+    "react/prefer-stateless-function": 2,
+    "react/react-in-jsx-scope": 2,
+    "react/jsx-uses-vars": 2,
+    "react/jsx-uses-react": 2,
+    "react/jsx-closing-bracket-location": [2, "after-props"],
+    "react/jsx-key": 1,
+    "react/jsx-max-props-per-line": [2, { "maximum": 1, "when": "multiline" }]
+  }
+}
