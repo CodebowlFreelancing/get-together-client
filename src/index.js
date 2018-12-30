@@ -1,6 +1,16 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
+import preact from 'preact'
+import {css} from 'astroturf'
 
-const App = <h1>Get-Together</h1>
+const style = css`
+  .foo {
+    color: red;
+  }
+`
 
-ReactDOM.render(App, document.getElementById('app'))
+preact.render(
+  <div id="app">
+    <span className={style.foo}>Hello, world!</span>
+    <button onClick={() => alert('hi!')}>Click Me</button>
+  </div>,
+  document.body
+)
