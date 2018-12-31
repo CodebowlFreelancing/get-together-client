@@ -1,0 +1,13 @@
+html {
+  font-size: 16px;
+}
+
+body {
+  color: #1a1a1a;
+  background-color: #f7f7f7;
+
+  min-width: 240px;
+  height: 100vh;
+
+  margin: 0;
+}

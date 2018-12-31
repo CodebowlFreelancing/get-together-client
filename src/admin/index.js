@@ -1,16 +1,4 @@
 import preact from 'preact'
-import {css} from 'astroturf'
+import AdminEventPage from './adminEventPage'
 
-const style = css`
-  .foo {
-    color: blue;
-  }
-`
-
-preact.render(
-  <div id="app">
-    <span className={style.foo}>Hello, world!</span>
-    <button onClick={() => alert('hi!')}>Click Me</button>
-  </div>,
-  document.body
-)
+preact.render(<AdminEventPage />, document.body)
