@@ -7,5 +7,9 @@
       }
     ]
   ],
-  "plugins": ["astroturf/plugin", ["@babel/plugin-transform-react-jsx", {"pragma": "preact.h"}]]
+  "plugins": [
+    "astroturf/plugin",
+    ["@babel/plugin-transform-react-jsx", {"pragma": "preact.h"}],
+    "@babel/plugin-proposal-class-properties"
+  ]
 }

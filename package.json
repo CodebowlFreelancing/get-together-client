@@ -24,6 +24,7 @@
   "browserslist": "> 0.25%",
   "devDependencies": {
     "@babel/core": "^7.2.0",
+    "@babel/plugin-proposal-class-properties": "^7.3.0",
     "@babel/plugin-transform-react-jsx": "^7.2.0",
     "@babel/preset-env": "^7.2.0",
     "babel-eslint": "^10.0.1",
@@ -42,7 +43,8 @@
     "prettier": "^1.15.3"
   },
   "dependencies": {
-    "preact": "^8.4.2",
-    "astroturf": "^0.8.1"
+    "astroturf": "^0.8.1",
+    "classnames": "^2.2.6",
+    "preact": "^8.4.2"
   }
 }
