@@ -1,0 +1,35 @@
+{
+  "events": [
+    {
+      "id": 1,
+      "title": "Event 1",
+      "description": "Description",
+      "location": "location",
+      "rsvp": true,
+      "rsvpOptions": ["OK", "NOK", "IFNEEDBE"],
+      "times": [
+        {"startTime": "timestamp", "endTime": "timestamp"},
+        {"startTime": "timestamp", "endTime": "timestamp"},
+        {"startTime": "timestamp", "endTime": "timestamp"}
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Event 2",
+      "description": "Description",
+      "location": "location",
+      "rsvp": false,
+      "rsvpOptions": ["OK", "NOK", "IFNEEDBE"],
+      "times": [{"startTime": "timestamp", "endTime": "timestamp"}]
+    },
+    {
+      "id": 3,
+      "title": "Event 3",
+      "description": "Description",
+      "location": "location",
+      "rsvp": false,
+      "rsvpOptions": ["OK", "NOK"],
+      "times": [{"startTime": "timestamp", "endTime": "timestamp"}]
+    }
+  ]
+}
