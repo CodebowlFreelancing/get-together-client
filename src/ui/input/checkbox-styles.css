@@ -1,0 +1,14 @@
+.inputCheckbox {
+  margin-right: 0.5em;
+}
+
+.inputCheckboxLabel {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  align-items: baseline;
+
+  :last-child {
+    margin-top: 0;
+  }
+}

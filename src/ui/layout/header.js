@@ -5,7 +5,7 @@ const styles = css`
   .layoutHeader {
     color: white;
     background-color: black;
-    height: 50px;
+    height: 100px;
   }
 `
 

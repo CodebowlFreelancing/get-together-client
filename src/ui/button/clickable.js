@@ -6,7 +6,7 @@ const styles = css`
     padding: 0;
     border: 0;
     background: transparent;
-    cursor: hand;
+    cursor: pointer;
   }
 `
 

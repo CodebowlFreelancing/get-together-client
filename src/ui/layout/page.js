@@ -14,7 +14,9 @@ const styles = css`
 
 const Page = ({title, children}) => (
   <div className={styles.layoutPage}>
-    <Header>{title}</Header>
+    <Header>
+      <h1>{title}</h1>
+    </Header>
     <Main>{children}</Main>
     <Footer>Footer</Footer>
   </div>

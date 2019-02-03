@@ -2,10 +2,14 @@
 
 1. Create event page
 
+   - Combine labels into inputs with hoc, required anyways everytime
+     - How to display which inputs are required, which are not?
+     - What about validation? Would be nice to have that before trying to send the form
+   - Times are inputed using inputs "date" and "time", implement an UI layout for asking them
+     - Layout should have option to add another range
+     - Leave room for a "calendar" feature that can be brough in from the side, displaying selected dates
+     - Find out a way to localize inputs (based on what?)
    - Add RSVP bool and possibility to select which are are in use, possibly in same component
-   - Decide and start implementation of how to select dates and times, possibly spanning many days
-
-     - How to minimize overhead? react/preact-day-picker seems cool and just the library but 7.4kbits... would at least require a lazy loading or something of the sort
-       - Use parcel lazy loading and provide a component lookalike while the datetime-picker loads, then pass value to it and use it
+     - Consider how this could be integrated into giving times, adding multiple times makes RSVP required
 
 2. Event / participation page

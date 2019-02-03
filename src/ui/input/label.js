@@ -1,7 +1,7 @@
 import preact from 'preact'
 
-const Label = ({text, children}) => (
-  <label>
+const Label = ({className, text, children}) => (
+  <label className={className}>
     <span>{text}</span>
     {children}
   </label>

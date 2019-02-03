@@ -1,0 +1,7 @@
+.layoutOnTopOfAnother {
+  display: flex;
+  flex-direction: column;
+  :not(:last-child) {
+    margin-top: 1em;
+  }
+}

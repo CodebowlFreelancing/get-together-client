@@ -1,5 +1,5 @@
 import preact from 'preact'
-import {Page, Label, TextInput, Datetime, Clickable, Icon} from '../ui'
+import {Page, Label, TextInput, Textarea, DatetimeRange, Clickable, Icon, Checkbox} from '../ui'
 
 class CreateEventPage extends preact.Component {
   state = {times: [{startTime: new Date(), endTime: new Date()}]}
@@ -12,21 +12,15 @@ class CreateEventPage extends preact.Component {
         <Label text="Title">
           <TextInput id="title" />
         </Label>
-        <Label text="Description">
-          <TextInput id="description" />
-        </Label>
         <Label text="Location">
           <TextInput id="location" />
         </Label>
+        <Label text="Description">
+          <Textarea id="description" />
+        </Label>
+        <Checkbox label="RSVP" id="rsvp" />
         {times.map(() => (
-          <div>
-            <Label text="Start time">
-              <Datetime id="start-time" />
-            </Label>
-            <Label text="End time">
-              <Datetime id="end-time" />
-            </Label>
-          </div>
+          <DatetimeRange />
         ))}
         <Clickable onClick={this.addTime}>
           <Icon glyph="add" />

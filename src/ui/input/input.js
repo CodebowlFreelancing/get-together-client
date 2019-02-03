@@ -4,6 +4,7 @@ import classnames from 'classnames'
 
 const styles = css`
   .inputInput {
+    font-size: 1rem;
     width: 100%;
     padding: 0.5em;
   }
