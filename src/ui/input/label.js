@@ -1,4 +1,4 @@
-import preact from 'preact'
+import {h} from 'preact'
 
 const Label = ({className, text, children}) => (
   <label className={className}>

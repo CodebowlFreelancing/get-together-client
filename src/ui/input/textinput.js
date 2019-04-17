@@ -1,4 +1,4 @@
-import preact from 'preact'
+import {h} from 'preact'
 import Input from './input'
 
 const TextInput = props => <Input type="text" {...props} />

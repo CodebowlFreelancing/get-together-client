@@ -1,4 +1,4 @@
-import preact from 'preact'
+import {h} from 'preact'
 import Label from './label'
 import Datetime from './datetime'
 import {css} from 'astroturf'

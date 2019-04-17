@@ -1,4 +1,4 @@
-import preact from 'preact'
+import {h} from 'preact'
 import Input from './input'
 
 const DateInput = props => <Input type="date" {...props} />

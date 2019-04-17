@@ -1,4 +1,4 @@
-import preact from 'preact'
+import {h} from 'preact'
 import DateInput from './date'
 import TimeInput from './time'
 import Inline from '../layout/inline'

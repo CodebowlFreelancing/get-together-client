@@ -1,4 +1,4 @@
-import preact from 'preact'
+import {h} from 'preact'
 import {css} from 'astroturf'
 import classnames from 'classnames'
 

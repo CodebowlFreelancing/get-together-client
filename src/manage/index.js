@@ -1,4 +1,4 @@
-import preact from 'preact'
+import {render, h} from 'preact'
 import ManageParticipation from './manageParticipationPage'
 
-preact.render(<ManageParticipation />, document.body)
+render(<ManageParticipation />, document.body)

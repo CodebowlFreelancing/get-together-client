@@ -1,4 +1,4 @@
-import preact from 'preact'
+import {h} from 'preact'
 import Page from '../ui/layout/page'
 
 const EventPage = () => (

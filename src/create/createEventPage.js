@@ -1,7 +1,7 @@
-import preact from 'preact'
+import {Component, h} from 'preact'
 import {Page, Label, TextInput, Textarea, DatetimeRange, Clickable, Icon, Checkbox} from '../ui'
 
-class CreateEventPage extends preact.Component {
+class CreateEventPage extends Component {
   state = {times: [{startTime: new Date(), endTime: new Date()}]}
 
   addTime = () => this.setState(({times}) => ({times: [...times, {}]}))
