@@ -1,14 +1,17 @@
 import {h} from 'preact'
 import {css} from 'astroturf'
+import Label from './label'
 
 const styles = css`
   .inputTextarea {
-    font-size: 1rem;
     width: 100%;
-    padding: 0.5em;
   }
 `
 
-const Textarea = props => <textarea className={styles.inputTextarea} {...props} />
+const Textarea = ({label, ...textareaProps}) => (
+  <Label text={label}>
+    <textarea className={styles.inputTextarea} {...textareaProps} />
+  </Label>
+)
 
 export default Textarea

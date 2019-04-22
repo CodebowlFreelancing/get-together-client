@@ -8,7 +8,6 @@ const styles = css`
   .layoutPage {
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
   }
 `
 
@@ -18,7 +17,7 @@ const Page = ({title, children}) => (
       <h1>{title}</h1>
     </Header>
     <Main>{children}</Main>
-    <Footer>Footer</Footer>
+    <Footer />
   </div>
 )
 

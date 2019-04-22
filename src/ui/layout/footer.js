@@ -3,9 +3,6 @@ import {css} from 'astroturf'
 
 const styles = css`
   .layoutFooter {
-    color: white;
-    background-color: black;
-    height: 50px;
     margin-top: auto;
   }
 `

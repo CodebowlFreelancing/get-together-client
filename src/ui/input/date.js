@@ -1,6 +1,11 @@
 import {h} from 'preact'
 import Input from './input'
+import Label from './label'
 
-const DateInput = props => <Input type="date" {...props} />
+const DateInput = ({label, ...inputProps}) => (
+  <Label text={label}>
+    <Input type="date" {...inputProps} />
+  </Label>
+)
 
 export default DateInput
