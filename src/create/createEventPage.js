@@ -1,33 +1,43 @@
 import {h} from 'preact'
 import {useState} from 'preact/hooks'
-import {Page, TextInput, Textarea, DateRange} from '../ui'
+import {css} from 'astroturf'
+import {Page, TextInput, Textarea, Icon, Button} from '../ui'
 import {remove, replace} from '../common/arrayUtils'
+import AddDateRange from './addDateRange'
 
-/*
-Date option removal problem:
-- unintuitive from the "clear" syntax
-- indexes will get messed up as there are no real ids but indexes instead
-  => however, atm relies on indexes getting messed up when adding new date option after writing something.
-     this might be possible to fix by taking control of values if proper keys are introduced
-- editing dates manually will invalidate value (remove it) which causes the daterange to also behave funcy
-*/
-
-const CreateEventPage = () => {
-  const [dates, setDates] = useState([[null, null]])
-
-  const updateDate = index => date => {
-    // if (dates[index][0] && !date[0]) {
-    //   setDates(remove(index, dates))
-    // } else
-
-    if (dates[index][0]) {
-      setDates(replace(index, date, dates))
-    } else {
-      setDates([date, ...dates])
+const styles = css`
+  .dates {
+    display: flex;
+    text-align: right;
+    :not(:last-child) {
+      flex-grow: 1;
+      margin: 0 0.5em;
     }
   }
 
-  console.log(dates)
+  .date {
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+  }
+
+  .dateClear {
+    padding: 0.5em;
+    border-radius: 25px;
+    margin-left: auto;
+  }
+`
+
+const CreateEventPage = () => {
+  const [dates, setDates] = useState([
+    ['string', 'string'],
+    ['string', 'string'],
+    ['string', 'string'],
+    ['string', 'string'],
+    ['string', 'string'],
+  ])
+
+  const foo = index => () => setDates(remove(index, dates))
 
   return (
     <Page title="Create event">
@@ -35,9 +45,22 @@ const CreateEventPage = () => {
         <TextInput label="Title" id="title" />
         <TextInput label="Location" id="location" />
         <Textarea label="Description" id="description" />
-        {dates.map((date, index) => (
-          <DateRange key={index} id={`daterange-${index}`} onChange={updateDate(index)} />
-        ))}
+        <fieldset>
+          <legend>Date options</legend>
+          <AddDateRange onAdd={daterange => setDates([daterange, ...dates])} />
+          <hr />
+          {dates.map((date, index) => (
+            <div key={index} className={styles.dates}>
+              <div className={styles.date}>
+                <span>{date[0]}</span>
+                <span>{date[1]}</span>
+              </div>
+              <Button className={styles.dateClear} type="button" onClick={foo(index)}>
+                <Icon glyph="delete" />
+              </Button>
+            </div>
+          ))}
+        </fieldset>
         <button type="submit" style={{marginTop: '1em'}}>
           Create
         </button>

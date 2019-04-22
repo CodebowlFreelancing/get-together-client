@@ -11,9 +11,9 @@ const styles = css`
   }
 `
 
-const DateRange = ({id, initialValue = [null, null], onChange, disabled}) => {
-  const [startValue, setStartValue] = useState(initialValue[0])
-  const [endValue, setEndValue] = useState(initialValue[1])
+const DateRange = ({onChange}) => {
+  const [startValue, setStartValue] = useState(null)
+  const [endValue, setEndValue] = useState(null)
 
   const onStartChange = event => {
     const newStartValue = event.target.value
@@ -28,11 +28,10 @@ const DateRange = ({id, initialValue = [null, null], onChange, disabled}) => {
   }
 
   return (
-    <fieldset className={styles.dateRange}>
-      <legend>Date range</legend>
-      <Date id={`${id}-start`} label="Start" onChange={onStartChange} disabled={disabled} />
-      <Date id={`${id}-end`} label="End" onChange={onEndChange} disabled={disabled || !startValue} />
-    </fieldset>
+    <div className={styles.dateRange}>
+      <Date label="Start" onChange={onStartChange} />
+      <Date label="End" onChange={onEndChange} disabled={!startValue} />
+    </div>
   )
 }
 

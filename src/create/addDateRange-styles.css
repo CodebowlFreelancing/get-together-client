@@ -1,0 +1,15 @@
+.dateRange {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  :not(:last-child) {
+    flex-grow: 1;
+    margin: 0 0.5em;
+  }
+}
+
+.addDateRangeButton {
+  padding: 0.5em;
+  border-radius: 25px;
+  margin-left: auto;
+}

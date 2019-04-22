@@ -2,9 +2,9 @@ import {h} from 'preact'
 import Input from './input'
 import Label from './label'
 
-const DateInput = ({label, ...inputProps}) => (
+const DateInput = ({label, className, ...inputProps}) => (
   <Label text={label}>
-    <Input type="date" {...inputProps} />
+    <Input type="date" className={className} {...inputProps} />
   </Label>
 )
 

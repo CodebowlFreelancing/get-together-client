@@ -1,3 +1,4 @@
+import Button from './button'
 import Clickable from './clickable'
 
-export {Clickable}
+export {Button, Clickable}
