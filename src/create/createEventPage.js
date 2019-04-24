@@ -3,8 +3,8 @@ import {useState} from 'preact/hooks'
 import {css} from 'astroturf'
 import {Page, TextInput, Textarea, Icon, Button} from '../ui'
 import {remove} from '../common/arrayUtils'
-import AddDateRange from './addDateRange'
 import {displayDate} from '../common/dateUtils'
+import AddDateRange from './addDateRange'
 
 const styles = css`
   .dateranges {
@@ -35,13 +35,7 @@ const styles = css`
 `
 
 const CreateEventPage = () => {
-  const [dates, setDates] = useState([
-    [new Date(), new Date()],
-    [new Date(), new Date()],
-    [new Date(), new Date()],
-    [new Date(), new Date()],
-    [new Date(), new Date()],
-  ])
+  const [dates, setDates] = useState([])
 
   const removeDateOption = index => () => setDates(remove(index, dates))
 
@@ -54,13 +48,13 @@ const CreateEventPage = () => {
         <fieldset>
           <legend>Date options</legend>
           <AddDateRange onAdd={daterange => setDates([daterange, ...dates])} />
-          <hr />
+          {dates.length > 0 && <hr />}
           <div className={styles.dateranges}>
             {dates.map((date, index) => (
               <div key={index} className={styles.daterange}>
                 <div className={styles.daterangeDisplay}>
                   {displayDate(date[0])}
-                  {date[1] ? ' - ' + displayDate(date[1]) : ''}
+                  {date[1] && ' - ' + displayDate(date[1])}
                 </div>
                 <Button className={styles.daterangeClear} type="button" onClick={removeDateOption(index)}>
                   <Icon glyph="delete" />
