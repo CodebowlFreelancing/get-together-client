@@ -33,9 +33,9 @@ const AddDateRange = ({onAdd}) => {
     resetDateRange(!keyToResetDateRange)
   }
 
-  const onStartChange = event => setStartValue(event.target.value)
+  const onStartChange = event => setStartValue(event.target.valueAsDate)
 
-  const onEndChange = event => setEndValue(event.target.value)
+  const onEndChange = event => setEndValue(event.target.valueAsDate)
 
   return (
     <div className={styles.dateRange}>
