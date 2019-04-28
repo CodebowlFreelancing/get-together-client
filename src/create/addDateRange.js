@@ -2,6 +2,7 @@ import {h} from 'preact'
 import {useState} from 'preact/hooks'
 import {css} from 'astroturf'
 import {Date, Button, Icon} from '../ui'
+import {daterangeCustomValidity, clearCustomValidity} from '../common/validity'
 
 const styles = css`
   .dateRange {
@@ -33,7 +34,13 @@ const AddDateRange = ({onAdd, required}) => {
     resetDateRange(!keyToResetDateRange)
   }
 
-  const onStartChange = event => setStartValue(event.target.valueAsDate)
+  const onStartChange = event => {
+    if (required) {
+      clearCustomValidity(event)
+    }
+
+    setStartValue(event.target.valueAsDate)
+  }
 
   const onEndChange = event => setEndValue(event.target.valueAsDate)
 
@@ -43,9 +50,8 @@ const AddDateRange = ({onAdd, required}) => {
         key={keyToResetDateRange}
         label="Start"
         onChange={onStartChange}
+        onInvalid={daterangeCustomValidity}
         required={required}
-        onChange={event => onStartChange(event) && required && event.target.setCustomValidity('')}
-        onInvalid={event => required && event.target.setCustomValidity('Please add at least one date or daterange.')}
       />
       <Date key={keyToResetDateRange} label="End" onChange={onEndChange} disabled={!startValue} />
       <Button className={styles.addDateRangeButton} type="button" onClick={addDate} disabled={!startValue}>

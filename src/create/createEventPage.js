@@ -1,10 +1,12 @@
 import {h} from 'preact'
-import {useState, useRef, useEffect} from 'preact/hooks'
+import {useState} from 'preact/hooks'
 import {css} from 'astroturf'
 import {Page, TextInput, Textarea, Icon, Button} from '../ui'
 import {remove} from '../common/arrayUtils'
 import {displayDate} from '../common/dateUtils'
 import AddDateRange from './addDateRange'
+import {postEvent} from './api'
+import {clearCustomValidity, titleCustomValidity} from '../common/validity'
 
 const styles = css`
   .submit {
@@ -45,21 +47,22 @@ const CreateEventPage = () => {
 
   const removeDateOption = index => () => setDates(remove(index, dates))
 
-  const createEvent = submitEvent => {
+  const createEvent = async submitEvent => {
     submitEvent.preventDefault()
     console.log(submitEvent)
+
+    try {
+      const response = await postEvent({title: 'testfiring api'})
+      console.info(response)
+    } catch (error) {
+      console.error(error) // TODO loading & error handling
+    }
   }
 
   return (
     <Page title="Create event">
       <form onSubmit={createEvent}>
-        <TextInput
-          label="Title"
-          name="title"
-          onChange={event => event.target.setCustomValidity('')}
-          onInvalid={event => event.target.setCustomValidity('Please fill title field.')}
-          required
-        />
+        <TextInput label="Title" name="title" onChange={clearCustomValidity} onInvalid={titleCustomValidity} required />
         <TextInput label="Location" name="location" />
         <Textarea label="Description" name="description" />
         <fieldset>
