@@ -42,6 +42,13 @@ const styles = css`
   }
 `
 
+const fields = {
+  title: 'title',
+  location: 'location',
+  description: 'description',
+  dateoption: 'dateoption',
+}
+
 const CreateEventPage = () => {
   const [dates, setDates] = useState([])
 
@@ -49,10 +56,19 @@ const CreateEventPage = () => {
 
   const createEvent = async submitEvent => {
     submitEvent.preventDefault()
-    console.log(submitEvent)
+    console.log('creating event')
 
     try {
-      const response = await postEvent({title: 'testfiring api'})
+      var formData = new FormData(submitEvent.target)
+      const response = await postEvent({
+        title: formData.get(fields.title),
+        location: formData.get(fields.location),
+        description: formData.get('description'),
+        dates:
+          dates.length > 0
+            ? dates
+            : [[formData.get(`${fields.dateoption}-start`), formData.get(`${fields.dateoption}-end`)]],
+      })
       console.info(response)
     } catch (error) {
       console.error(error) // TODO loading & error handling
@@ -62,12 +78,22 @@ const CreateEventPage = () => {
   return (
     <Page title="Create event">
       <form onSubmit={createEvent}>
-        <TextInput label="Title" name="title" onChange={clearCustomValidity} onInvalid={titleCustomValidity} required />
-        <TextInput label="Location" name="location" />
-        <Textarea label="Description" name="description" />
+        <TextInput
+          label="Title"
+          name={fields.title}
+          onChange={clearCustomValidity}
+          onInvalid={titleCustomValidity}
+          required
+        />
+        <TextInput label="Location" name={fields.location} />
+        <Textarea label="Description" name={fields.description} />
         <fieldset>
           <legend>Date options</legend>
-          <AddDateRange onAdd={daterange => setDates([daterange, ...dates])} required={dates.length === 0} />
+          <AddDateRange
+            name={fields.dateoption}
+            onAdd={daterange => setDates([daterange, ...dates])}
+            required={dates.length === 0}
+          />
           {dates.length > 0 && <hr />}
           <div className={styles.dateranges}>
             {dates.map((date, index) => (

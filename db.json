@@ -1,12 +1,3 @@
 {
-  "events": [
-    {
-      "title": "testfiring api",
-      "id": 1
-    },
-    {
-      "title": "testfiring api",
-      "id": 2
-    }
-  ]
+  "events": []
 }

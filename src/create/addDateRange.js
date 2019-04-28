@@ -22,7 +22,7 @@ const styles = css`
   }
 `
 
-const AddDateRange = ({onAdd, required}) => {
+const AddDateRange = ({name, onAdd, required}) => {
   const [keyToResetDateRange, resetDateRange] = useState(true)
   const [startValue, setStartValue] = useState(null)
   const [endValue, setEndValue] = useState(null)
@@ -48,12 +48,13 @@ const AddDateRange = ({onAdd, required}) => {
     <div className={styles.dateRange}>
       <Date
         key={keyToResetDateRange}
+        name={`${name}-start`}
         label="Start"
         onChange={onStartChange}
         onInvalid={daterangeCustomValidity}
         required={required}
       />
-      <Date key={keyToResetDateRange} label="End" onChange={onEndChange} disabled={!startValue} />
+      <Date key={keyToResetDateRange} name={`${name}-end`} label="End" onChange={onEndChange} disabled={!startValue} />
       <Button className={styles.addDateRangeButton} type="button" onClick={addDate} disabled={!startValue}>
         <Icon glyph="add" />
       </Button>
