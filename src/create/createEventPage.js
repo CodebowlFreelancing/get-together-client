@@ -1,5 +1,5 @@
 import {h} from 'preact'
-import {useState} from 'preact/hooks'
+import {useState, useRef, useEffect} from 'preact/hooks'
 import {css} from 'astroturf'
 import {Page, TextInput, Textarea, Icon, Button} from '../ui'
 import {remove} from '../common/arrayUtils'
@@ -7,6 +7,12 @@ import {displayDate} from '../common/dateUtils'
 import AddDateRange from './addDateRange'
 
 const styles = css`
+  .submit {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 1em;
+  }
+
   .dateranges {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
@@ -39,15 +45,26 @@ const CreateEventPage = () => {
 
   const removeDateOption = index => () => setDates(remove(index, dates))
 
+  const createEvent = submitEvent => {
+    submitEvent.preventDefault()
+    console.log(submitEvent)
+  }
+
   return (
     <Page title="Create event">
-      <form>
-        <TextInput label="Title" id="title" />
-        <TextInput label="Location" id="location" />
-        <Textarea label="Description" id="description" />
+      <form onSubmit={createEvent}>
+        <TextInput
+          label="Title"
+          name="title"
+          onChange={event => event.target.setCustomValidity('')}
+          onInvalid={event => event.target.setCustomValidity('Please fill title field.')}
+          required
+        />
+        <TextInput label="Location" name="location" />
+        <Textarea label="Description" name="description" />
         <fieldset>
           <legend>Date options</legend>
-          <AddDateRange onAdd={daterange => setDates([daterange, ...dates])} />
+          <AddDateRange onAdd={daterange => setDates([daterange, ...dates])} required={dates.length === 0} />
           {dates.length > 0 && <hr />}
           <div className={styles.dateranges}>
             {dates.map((date, index) => (
@@ -63,9 +80,9 @@ const CreateEventPage = () => {
             ))}
           </div>
         </fieldset>
-        <button type="submit" style={{marginTop: '1em'}}>
-          Create
-        </button>
+        <div className={styles.submit}>
+          <Button type="submit">Create</Button>
+        </div>
       </form>
     </Page>
   )

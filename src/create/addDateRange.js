@@ -8,7 +8,7 @@ const styles = css`
     display: flex;
     flex-wrap: wrap;
     align-items: flex-end;
-    :not(:last-child) {
+    > :not(:last-child) {
       flex-grow: 1;
       margin: 0 0.5em;
     }
@@ -21,7 +21,7 @@ const styles = css`
   }
 `
 
-const AddDateRange = ({onAdd}) => {
+const AddDateRange = ({onAdd, required}) => {
   const [keyToResetDateRange, resetDateRange] = useState(true)
   const [startValue, setStartValue] = useState(null)
   const [endValue, setEndValue] = useState(null)
@@ -39,7 +39,14 @@ const AddDateRange = ({onAdd}) => {
 
   return (
     <div className={styles.dateRange}>
-      <Date key={keyToResetDateRange} label="Start" onChange={onStartChange} />
+      <Date
+        key={keyToResetDateRange}
+        label="Start"
+        onChange={onStartChange}
+        required={required}
+        onChange={event => onStartChange(event) && required && event.target.setCustomValidity('')}
+        onInvalid={event => required && event.target.setCustomValidity('Please add at least one date or daterange.')}
+      />
       <Date key={keyToResetDateRange} label="End" onChange={onEndChange} disabled={!startValue} />
       <Button className={styles.addDateRangeButton} type="button" onClick={addDate} disabled={!startValue}>
         <Icon glyph="add" />
