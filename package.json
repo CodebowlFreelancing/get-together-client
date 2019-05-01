@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Client for get-together organizer app",
   "private": true,
+  "main": "dist/index.html",
   "scripts": {
     "start": "parcel ./src/**/*.html",
     "watch": "parcel watch ./src/**/*.html",
