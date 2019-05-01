@@ -4,7 +4,7 @@
   publish = "dist"
 
 [build]
-  base = "/"
+  base = "."
   command = "npm run build"
-  publish = "//dist"
-  functions = "functions"
+  publish = "./dist"
+  functions = "./functions"
