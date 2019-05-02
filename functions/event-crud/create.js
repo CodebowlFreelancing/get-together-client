@@ -1,4 +1,5 @@
 const faunadb = require('faunadb')
+const nanoid = require('nanoid')
 
 /* configure faunaDB Client with our secret */
 const q = faunadb.query
@@ -11,12 +12,14 @@ exports.handler = async (event, context) => {
   /* parse the string body into a useable JS object */
   const data = JSON.parse(event.body)
   console.log('Function `create` invoked', data)
-  const item = {
-    data: data,
-  }
+
   /* construct the fauna query */
   return client
-    .query(q.Create(q.Ref('classes/items'), item))
+    .query(
+      q.Create(q.Ref('classes/items'), {
+        data: {...data, eventId: nanoid(), adminId: nanoid()},
+      })
+    )
     .then(response => {
       console.log('success', response)
       /* Success! return the response with statusCode 200 */

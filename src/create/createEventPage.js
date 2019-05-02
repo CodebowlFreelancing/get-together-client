@@ -49,6 +49,10 @@ const fields = {
   dateoption: 'dateoption',
 }
 
+// TODO: loading & error handling
+// TODO: result page
+// TODO: Make date options validation more intuitive
+
 const CreateEventPage = () => {
   const [dates, setDates] = useState([])
 
@@ -56,7 +60,6 @@ const CreateEventPage = () => {
 
   const createEvent = async submitEvent => {
     submitEvent.preventDefault()
-    console.log('creating event')
 
     try {
       var formData = new FormData(submitEvent.target)
