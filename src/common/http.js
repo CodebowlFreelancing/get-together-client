@@ -14,7 +14,7 @@ const _fetch = method => (url, options = {headers: {}}) =>
       return response.json()
     }
 
-    throw new Error('Server unavailable')
+    throw new Error('Oops! Service seems to be unavailable. Please try again later.')
   })
 
 const httpGET = _fetch('GET')

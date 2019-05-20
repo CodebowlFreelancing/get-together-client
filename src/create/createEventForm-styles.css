@@ -1,0 +1,31 @@
+.submit {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1em;
+}
+
+.dateranges {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+}
+
+.daterange {
+  display: flex;
+  :not(:last-child) {
+    flex-grow: 1;
+    margin: 0 0.5em;
+  }
+}
+
+.daterangeDisplay {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  padding: 0.5em 0;
+}
+
+.daterangeClear {
+  padding: 0.5em;
+  border-radius: 25px;
+  margin-left: auto;
+}

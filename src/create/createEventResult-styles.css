@@ -1,0 +1,14 @@
+.resultLinks {
+  display: grid;
+  grid-template-columns: 100px auto;
+  grid-row-gap: 0.5em;
+  align-items: center;
+}
+
+.resultActions {
+  display: flex;
+  margin-top: 2em;
+  > button {
+    margin-left: auto;
+  }
+}
