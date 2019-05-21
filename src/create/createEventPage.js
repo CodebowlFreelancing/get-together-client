@@ -1,19 +1,16 @@
 import {h} from 'preact'
-import {useState} from 'preact/hooks'
-import {css} from 'astroturf'
 import {Page, Status} from '../ui'
 import {postEvent} from './api'
 import CreateEventForm from './createEventForm'
 import CreateEventResult from './createEventResult'
 import {delay} from '../common/eventUtils'
+import {useAsyncOp} from '../common/useAsyncOp'
 
 const CreateEventPage = () => {
-  const [result, setResult] = useState(null)
-  const [busy, setBusy] = useState(false)
-  const [error, setError] = useState(null)
+  const [{result, busy, error}, {load, setResult, setError}] = useAsyncOp()
 
   const createEvent = async payload => {
-    setBusy(true)
+    load()
     try {
       const response = await postEvent(payload)
       setResult(response.data)
@@ -22,7 +19,6 @@ const CreateEventPage = () => {
       await delay(5000)
       setError(null)
     }
-    setBusy(false)
   }
 
   const createNewEvent = () => setResult(null)

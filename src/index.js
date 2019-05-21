@@ -1,4 +1,4 @@
 import {render, h} from 'preact'
-import CreateEventPage from './createEventPage'
+import CreateEventPage from './create/createEventPage'
 
 render(<CreateEventPage />, document.body)
