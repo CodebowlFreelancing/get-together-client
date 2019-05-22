@@ -5,11 +5,11 @@
   "private": true,
   "main": "dist/index.html",
   "scripts": {
-    "start": "parcel ./src/index.html ./src/**/*.html",
-    "watch": "parcel watch ./src/index.html ./src/**/*.html",
+    "start": "parcel ./src/index.html ./src/404.html ./src/**/*.html",
+    "watch": "parcel watch ./src/index.html ./src/404.html ./src/**/*.html",
     "start:mockServer": "json-server --watch db.json",
     "prebuild": "rm -rf dist",
-    "build": "parcel build ./src/index.html ./src/**/*.html",
+    "build": "parcel build ./src/index.html ./src/404.html ./src/**/*.html",
     "lint": "eslint ."
   },
   "repository": {
