@@ -1,12 +1,35 @@
 import {h} from 'preact'
-import Page from '../ui/layout/page'
+import {useEffect} from 'preact/hooks'
+import {Page, Status} from '../ui'
+import {useAsyncOp} from '../common/useAsyncOp'
+import {getEvent} from './api'
+import {getSegments} from '../common/urlUtils'
 
-const EventPage = () => (
-  <Page title="Event">
-    <div>Title</div>
-    <div>Description</div>
-    <div>Participation</div>
-  </Page>
-)
+const EventPage = () => {
+  const [{result, busy, error}, {load, setResult, setError}] = useAsyncOp()
+
+  useEffect(() => {
+    const fetchEvent = async () => {
+      load()
+      try {
+        const eventId = getSegments()[1]
+        const response = await getEvent(eventId)
+        setResult(response.data)
+      } catch (error) {
+        setError(error)
+      }
+    }
+
+    fetchEvent()
+  }, [])
+
+  return (
+    <Page title="Event">
+      <Status isBusy={busy} error={error}>
+        Moi
+      </Status>
+    </Page>
+  )
+}
 
 export default EventPage

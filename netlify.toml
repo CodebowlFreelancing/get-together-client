@@ -8,3 +8,8 @@
   command = "npm run build"
   publish = "./dist"
   functions = "./functions"
+
+[[redirects]]
+  from = "/event/*"
+  to = "/event"
+  status = 200

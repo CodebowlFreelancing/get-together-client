@@ -9,9 +9,16 @@ const _fetch = method => (url, options = {headers: {}}) =>
       Accept: 'application/json',
       'Content-Type': 'application/json',
     }),
+    redirect: 'error',
   }).then(response => {
+    console.info('response', response)
     if (response.ok) {
       return response.json()
+    }
+
+    // TODO 404 handling
+    if (response.status === 404) {
+      console.error('do redirect please')
     }
 
     throw new Error('Oops! Service seems to be unavailable. Please try again later.')
