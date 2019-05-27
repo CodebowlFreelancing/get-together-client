@@ -18,7 +18,6 @@ function createFaunaDB() {
   return client
     .query(q.Create(q.Ref('classes'), {name: 'event'}))
     .then(() => {
-      console.log('Created event class')
       return client.query(
         q.Create(q.Ref('indexes'), {
           name: 'all_event',
@@ -27,7 +26,26 @@ function createFaunaDB() {
         })
       )
     })
-
+    .then(() => {
+      return client.query(
+        q.Create(q.Ref('indexes'), {
+          name: 'event_eventId',
+          source: q.Ref('classes/event'),
+          active: true,
+        })
+      )
+    })
+    .then(() => {
+      return client.query(
+        q.Create(q.Ref('indexes'), {
+          name: 'event_adminId',
+          source: q.Ref('classes/event'),
+          active: true,
+          unique: true,
+          terms: [{field: ['data', 'eventId']}],
+        })
+      )
+    })
     .catch(e => {
       if (e.requestResult.statusCode === 400 && e.message === 'instance not unique') {
         console.log('DB already exists')
