@@ -11,7 +11,6 @@ const _fetch = method => (url, options = {headers: {}}) =>
     }),
     redirect: 'error',
   }).then(response => {
-    console.info('response', response)
     if (response.ok) {
       return response.json()
     }

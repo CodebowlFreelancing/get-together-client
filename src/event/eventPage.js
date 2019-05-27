@@ -4,6 +4,7 @@ import {Page, Status} from '../ui'
 import {useAsyncOp} from '../common/useAsyncOp'
 import {getEvent} from './api'
 import {getSegments} from '../common/urlUtils'
+import EventParticipateForm from './eventParticipateForm'
 
 const EventPage = () => {
   const [{result, busy, error}, {load, setResult, setError}] = useAsyncOp()
@@ -23,10 +24,13 @@ const EventPage = () => {
     fetchEvent()
   }, [])
 
+  const {title, location, description, dates} = result || {}
   return (
-    <Page title="Event">
+    <Page title={title || 'Event'}>
       <Status isBusy={busy} error={error}>
-        Moi
+        <span>{location}</span>
+        <pre>{description}</pre>
+        <EventParticipateForm dates={dates} />
       </Status>
     </Page>
   )

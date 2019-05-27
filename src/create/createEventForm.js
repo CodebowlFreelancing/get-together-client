@@ -50,6 +50,13 @@ const fields = {
 
 // TODO: Make date options validation more intuitive
 
+// TODO Get id for dates
+// Does not have to be unique, only unique in context of event soooo index?
+
+// TODO Sort dates
+// const sortEventsByDates = events => events.sort((a, b) => new Date(a.dates[0]).getTime() - new Date(b.dates[0]).getTime())
+// ^ when to run this? not possible to sort on query? sort already on submit?
+
 const CreateEventForm = ({onCreateEventFormSubmit}) => {
   const [dates, setDates] = useState([])
   const removeDateOption = index => () => setDates(remove(index, dates))
