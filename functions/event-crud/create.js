@@ -16,7 +16,7 @@ exports.handler = async (event, context) => {
   /* construct the fauna query */
   return client
     .query(
-      q.Create(q.Ref('classes/items'), {
+      q.Create(q.Ref('classes/event'), {
         data: {...data, eventId: nanoid(), adminId: nanoid()},
       })
     )

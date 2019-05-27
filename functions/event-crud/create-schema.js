@@ -16,13 +16,13 @@ function createFaunaDB() {
 
   /* Based on your requirements, change the schema here */
   return client
-    .query(q.Create(q.Ref('classes'), {name: 'events'}))
+    .query(q.Create(q.Ref('classes'), {name: 'event'}))
     .then(() => {
-      console.log('Created events class')
+      console.log('Created event class')
       return client.query(
         q.Create(q.Ref('indexes'), {
-          name: 'all_items',
-          source: q.Ref('classes/events'),
+          name: 'all_event',
+          source: q.Ref('classes/event'),
           active: true,
         })
       )

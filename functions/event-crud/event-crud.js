@@ -5,8 +5,8 @@ exports.handler = async (event, context) => {
 
   switch (event.httpMethod) {
     case 'GET':
-      if (segments.length === 1) {
-        event.id = segments[0]
+      if (segments.length > 1) {
+        event.id = segments[1]
         return require('./read').handler(event, context)
       } else {
         return {
@@ -17,7 +17,7 @@ exports.handler = async (event, context) => {
     case 'POST':
       return require('./create').handler(event, context)
     case 'PUT':
-      if (segments.length === 1) {
+      if (segments.length > 1) {
         event.id = segments[0]
         return require('./update').handler(event, context)
       } else {
