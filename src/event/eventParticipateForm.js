@@ -23,7 +23,7 @@ const EventParticipateForm = ({dates, onParticipate}) => {
     const formData = new FormData(submitEvent.target)
     console.log(submitEvent.target)
     console.log(formData.get(fields.name))
-    console.log(formData.getAll(fields.dateOption).map(date => date.split(',')))
+    console.log(formData.getAll(fields.dateOption))
     // onParticipate({
     //   name: formData.get('name'),
     // })
@@ -35,12 +35,12 @@ const EventParticipateForm = ({dates, onParticipate}) => {
       <fieldset>
         <legend>I can participate on...</legend>
         {dates &&
-          dates.map((date, index) => (
+          dates.map(({id, start, end}) => (
             <CheckboxInput
-              key={index}
-              label={`${displayDateString(date[0])}${date[1] ? ' - ' + displayDateString(date[1]) : ''}`}
+              key={id}
+              label={`${displayDateString(start)}${end ? ' - ' + displayDateString(end) : ''}`}
               name={fields.dateOption}
-              value={date}
+              value={id}
             />
           ))}
       </fieldset>

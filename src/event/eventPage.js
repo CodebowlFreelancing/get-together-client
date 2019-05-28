@@ -26,8 +26,9 @@ const EventPage = () => {
 
   const {title, location, description, dates} = result || {}
   return (
-    <Page title={title || 'Event'}>
+    <Page title="Participate">
       <Status isBusy={busy} error={error}>
+        <h2>{title}</h2>
         <span>{location}</span>
         <pre>{description}</pre>
         <EventParticipateForm dates={dates} />
