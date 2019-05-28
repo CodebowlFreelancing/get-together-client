@@ -1,11 +1,11 @@
 import {h} from 'preact'
 import {useState} from 'preact/hooks'
 import {css} from 'astroturf'
-import {TextInput, Textarea, Icon, Button} from '../ui'
+import {TextInput, Textarea, Icon, Button, Legend} from '../ui'
 import {remove} from '../common/arrayUtils'
 import {displayDate} from '../common/dateUtils'
 import AddDateRange from './addDateRange'
-import {clearCustomValidity, titleCustomValidity} from '../common/validity'
+import {clearCustomValidity, titleCustomValidity, daterangeCustomValidity} from '../common/validity'
 
 const styles = css`
   .submit {
@@ -46,33 +46,34 @@ const fields = {
   location: 'location',
   description: 'description',
   dateoption: 'dateoption',
+  daterangeStart: 'daterange-start',
+  daterangeEnd: 'daterange-end',
 }
 
-// TODO: Make date options validation more intuitive
+const dateObjSort = (a, b) => (a.start === b.start ? 0 : a.start < b.start ? -1 : 1)
 
-// TODO Get id for dates
-// Does not have to be unique, only unique in context of event soooo index?
-
-// TODO Sort dates
-// const sortEventsByDates = events => events.sort((a, b) => new Date(a.dates[0]).getTime() - new Date(b.dates[0]).getTime())
-// ^ when to run this? not possible to sort on query? sort already on submit?
+const dateStrPairToDateObj = ([start, end], id) => ({id, start, end})
 
 const CreateEventForm = ({onCreateEventFormSubmit}) => {
   const [dates, setDates] = useState([])
+
   const removeDateOption = index => () => setDates(remove(index, dates))
 
   const onSubmit = submitEvent => {
     submitEvent.preventDefault()
 
+    if (dates.length === 0) {
+      daterangeCustomValidity(submitEvent.target[fields.daterangeStart])
+      return
+    }
+
     const formData = new FormData(submitEvent.target)
+
     onCreateEventFormSubmit({
       title: formData.get(fields.title),
       location: formData.get(fields.location),
       description: formData.get(fields.description),
-      dates:
-        dates.length > 0
-          ? dates
-          : [[formData.get(`${fields.dateoption}-start`), formData.get(`${fields.dateoption}-end`)]],
+      dates: dates.map(dateStrPairToDateObj).sort(dateObjSort),
     })
   }
 
@@ -88,11 +89,11 @@ const CreateEventForm = ({onCreateEventFormSubmit}) => {
       <TextInput label="Location" name={fields.location} />
       <Textarea label="Description" name={fields.description} />
       <fieldset>
-        <legend>Date options</legend>
+        <Legend required>Date options</Legend>
         <AddDateRange
-          name={fields.dateoption}
+          nameStart={fields.daterangeStart}
+          nameEnd={fields.daterangeEnd}
           onAdd={daterange => setDates([daterange, ...dates])}
-          required={dates.length === 0}
         />
         {dates.length > 0 && <hr />}
         <div className={styles.dateranges}>

@@ -2,7 +2,6 @@ import {h} from 'preact'
 import {useState} from 'preact/hooks'
 import {css} from 'astroturf'
 import {Date, Button, Icon} from '../ui'
-import {daterangeCustomValidity, clearCustomValidity} from '../common/validity'
 
 const styles = css`
   .dateRange {
@@ -22,7 +21,7 @@ const styles = css`
   }
 `
 
-const AddDateRange = ({name, onAdd, required}) => {
+const AddDateRange = ({nameStart, nameEnd, onAdd}) => {
   const [keyToResetDateRange, resetDateRange] = useState(true)
   const [startValue, setStartValue] = useState(null)
   const [endValue, setEndValue] = useState(null)
@@ -34,27 +33,14 @@ const AddDateRange = ({name, onAdd, required}) => {
     resetDateRange(!keyToResetDateRange)
   }
 
-  const onStartChange = event => {
-    if (required) {
-      clearCustomValidity(event)
-    }
-
-    setStartValue(event.target.valueAsDate)
-  }
+  const onStartChange = event => setStartValue(event.target.valueAsDate)
 
   const onEndChange = event => setEndValue(event.target.valueAsDate)
 
   return (
     <div className={styles.dateRange}>
-      <Date
-        key={keyToResetDateRange}
-        name={`${name}-start`}
-        label="Start"
-        onChange={onStartChange}
-        onInvalid={daterangeCustomValidity}
-        required={required}
-      />
-      <Date key={keyToResetDateRange} name={`${name}-end`} label="End" onChange={onEndChange} disabled={!startValue} />
+      <Date key={keyToResetDateRange} name={nameStart} label="Start" onChange={onStartChange} />
+      <Date key={keyToResetDateRange} name={nameEnd} label="End" onChange={onEndChange} disabled={!startValue} />
       <Button className={styles.addDateRangeButton} type="button" onClick={addDate} disabled={!startValue}>
         <Icon glyph="add" />
       </Button>
