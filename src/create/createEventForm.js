@@ -54,6 +54,11 @@ const dateObjSort = (a, b) => (a.start === b.start ? 0 : a.start < b.start ? -1 
 
 const dateStrPairToDateObj = ([start, end], id) => ({id, start, end})
 
+// TODO Query participation https://docs.fauna.com/fauna/current/reference/indexconfig & https://docs.fauna.com/fauna/current/howto/fql_for_sql_users#join
+// Probably good enough to just query both event and participation with both ids in segments and combine in code
+
+// TODO Sort with faunadb values https://fauna.com/blog/index-queries-in-faunadb & https://docs.fauna.com/fauna/current/reference/indexconfig#ordering
+
 const CreateEventForm = ({onCreateEventFormSubmit}) => {
   const [dates, setDates] = useState([])
 
