@@ -50,7 +50,7 @@
     "astroturf": "^0.9.14",
     "classnames": "^2.2.6",
     "faunadb": "^2.7.0",
-    "nanoid": "^2.0.4",
+    "nanoid": "^3.1.31",
     "preact": "^10.0.0-rc.1"
   }
 }
